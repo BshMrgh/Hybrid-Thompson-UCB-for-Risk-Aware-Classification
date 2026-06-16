@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it. Update this file after acceptance/public release."
+title: "Risk-Sensitive Learning using Contextual Bandits for Medical Image Classification on Small Datasets"
+authors:
+  - family-names: Marghalani
+    given-names: Bashayer
+  - family-names: Herrmann
+    given-names: J. Michael
+year: 2026
+abstract: "Brain Tumour Classification is a safety-critical process: misclassifying a tumour case as healthy can delay treatment and endanger the patient. This study reframes four-class brain image classification (glioma, meningioma, pituitary, healthy) as a single-step contextual bandit problem. This framework uses a cost-sensitive learning principle in the reward system itself and is a safety-aware process that observes tumour-to-healthy errors and keeps them at a minimum. This framework has been challenged by applying it to a small dataset. We evaluated contextual-bandit agents using Upper Confidence Bound (UCB), Thompson Sampling, epsilon-greedy, and Boltzmann distribution for exploration across three data regimes using a four-fold cross-validation. The results demonstrate that reward shaping can tune the safety–accuracy trade-off, prioritising clinically risky confusions while remaining competitive and even better than traditional deep learning techniques under limited data."

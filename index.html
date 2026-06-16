@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Risk-Sensitive Learning using Contextual Bandits for Medical Image Classification on Small Datasets</title>
+  <meta name="description" content="Paper page for Risk-Sensitive Learning using Contextual Bandits for Medical Image Classification on Small Datasets">
+  <meta name="author" content="Bashayer Marghalani, J. Michael Herrmann">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav" aria-label="Page navigation">
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#citation">Citation</a>
+    </nav>
+    <div class="hero-inner">
+      <p class="venue">Paper page · BMVC 2026-style manuscript</p>
+      <h1>Risk-Sensitive Learning using Contextual Bandits for Medical Image Classification on Small Datasets</h1>
+      <p class="authors"><a href="mailto:email/homepage">Name</a>, <a href="mailto:b.marghalani@sms.ed.ac.uk">Bashayer Marghalani</a>, <a href="mailto:michael.herrmann@ed.ac.uk">J.~Michael Herrmann</a></p>
+      <p class="affiliation">NameAddress</p>
+      <div class="buttons">
+        <a class="button primary" href="assets/paper.pdf">Download paper PDF</a>
+        <a class="button" href="#citation">Cite</a>
+        <a class="button muted" href="#">Code coming soon</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card notice">
+      <strong>Note.</strong> This page is prepared from the uploaded manuscript files. It presents the work as a research manuscript and does not imply clinical validation or conference acceptance.
+    </section>
+
+    <section id="abstract" class="section narrow">
+      <h2>Abstract</h2>
+      <p>Brain Tumour Classification is a safety-critical process: misclassifying a tumour case as healthy can delay treatment and endanger the patient. This study reframes four-class brain image classification (glioma, meningioma, pituitary, healthy) as a single-step contextual bandit problem. This framework uses a cost-sensitive learning principle in the reward system itself and is a safety-aware process that observes tumour-to-healthy errors and keeps them at a minimum. This framework has been challenged by applying it to a small dataset. We evaluated contextual-bandit agents using Upper Confidence Bound (UCB), Thompson Sampling, epsilon-greedy, and Boltzmann distribution for exploration across three data regimes using a four-fold cross-validation. The results demonstrate that reward shaping can tune the safety–accuracy trade-off, prioritising clinically risky confusions while remaining competitive and even better than traditional deep learning techniques under limited data.</p>
+    </section>
+
+    <section class="section narrow">
+      <h2>Key idea</h2>
+      <p>
+        Brain tumour classification is treated as a safety-aware decision problem. Instead of optimising accuracy alone, the reward function penalises tumour-to-healthy errors most strongly, encouraging the model to avoid false reassurance when predicting the healthy class.
+      </p>
+      <div class="grid three">
+        <article class="mini-card">
+          <h3>Task</h3>
+          <p>Four-class brain MRI classification: glioma, meningioma, pituitary, and healthy.</p>
+        </article>
+        <article class="mini-card">
+          <h3>Model family</h3>
+          <p>Contextual-bandit-style policies with neural and linear reward estimators.</p>
+        </article>
+        <article class="mini-card">
+          <h3>Safety metric</h3>
+          <p>Tumour-to-healthy error rate and healthy-class precision are analysed alongside accuracy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="method" class="section">
+      <h2>Method overview</h2>
+      <figure class="figure">
+        <img src="assets/pipeline.png" alt="Full pipeline of safety-aware classification with contextual bandits">
+        <figcaption>Pipeline: preprocessing, fused deep feature extraction, contextual-bandit-style classification, and safety-aware evaluation.</figcaption>
+      </figure>
+      <div class="grid two">
+        <article class="mini-card">
+          <h3>Feature extraction</h3>
+          <p>Each image is augmented with flips and rotations, passed through frozen AlexNet, VGG16, VGG19, and EfficientNet-B0 backbones, then fused and reduced with PCA.</p>
+        </article>
+        <article class="mini-card">
+          <h3>Policies</h3>
+          <p>The paper evaluates Thompson Sampling–UCB, ε-greedy, and Boltzmann exploration across neural and linear reward estimators.</p>
+        </article>
+      </div>
+      <figure class="figure split">
+        <img src="assets/feature_space.png" alt="Feature-space visualisation across datasets and backbones">
+        <figcaption>Feature-space visualisation across Dataset B, BC, and B2.</figcaption>
+      </figure>
+    </section>
+
+    <section id="results" class="section">
+      <h2>Main results</h2>
+      <p class="lead">
+        On the smallest balanced dataset, B2, N-TS-UCB achieved the strongest safety-aware balance: lowest T-H rate, highest healthy-class precision, highest validation accuracy, and shared highest test accuracy.
+      </p>
+      <div class="table-wrap" role="region" aria-label="Dataset B2 results" tabindex="0">
+        <table><thead><tr><th>Model</th><th>Val. acc</th><th>Test acc</th><th>T-H rate</th><th>Healthy Pr.</th><th>Glioma R</th><th>Meningioma R</th><th>Pituitary R</th></tr></thead><tbody><tr><th class="best">N-TS-UCB</th><td class="best">0.914</td><td class="best">0.836</td><td class="best">0.0413</td><td class="best">0.884</td><td>0.879</td><td>0.743</td><td>0.948</td></tr><tr><th>VGG19</th><td>0.785</td><td>0.743</td><td>0.0422</td><td>0.877</td><td>0.827</td><td>0.537</td><td>0.850</td></tr><tr><th>N-Boltz (τ=1.5)</th><td>0.907</td><td>0.825</td><td>0.0457</td><td>0.866</td><td>0.900</td><td>0.657</td><td>0.969</td></tr><tr><th>N-ε-Greedy</th><td>0.901</td><td>0.805</td><td>0.0543</td><td>0.851</td><td>0.900</td><td>0.551</td><td>0.962</td></tr><tr><th>VGG16</th><td>0.801</td><td>0.794</td><td>0.0611</td><td>0.851</td><td>0.897</td><td>0.597</td><td>0.860</td></tr><tr><th>N-Boltz (τ=2.0)</th><td>0.896</td><td>0.836</td><td>0.0630</td><td>0.834</td><td>0.914</td><td>0.680</td><td>0.910</td></tr><tr><th>AlexNet</th><td>0.774</td><td>0.745</td><td>0.0722</td><td>0.806</td><td>0.823</td><td>0.527</td><td>0.877</td></tr><tr><th>Lin-TS-UCB</th><td>0.875</td><td>0.800</td><td>0.0935</td><td>0.769</td><td>0.866</td><td>0.554</td><td>0.916</td></tr><tr><th>Lin-Boltz (τ=1.5)</th><td>0.868</td><td>0.810</td><td>0.1022</td><td>0.765</td><td>0.868</td><td>0.568</td><td>0.916</td></tr><tr><th>Lin-Boltz (τ=2.0)</th><td>0.868</td><td>0.810</td><td>0.1022</td><td>0.765</td><td>0.868</td><td>0.568</td><td>0.916</td></tr><tr><th>Lin-ε-Greedy</th><td>0.884</td><td>0.760</td><td>0.1109</td><td>0.731</td><td>0.844</td><td>0.509</td><td>0.857</td></tr><tr><th>EfficientNet-B0</th><td>0.626</td><td>0.620</td><td>0.2244</td><td>0.595</td><td>0.807</td><td>0.163</td><td>0.610</td></tr></tbody></table>
+      </div>
+      <p class="caption-note">H = healthy, G = glioma, M = meningioma, Pit. = pituitary. Values are copied from the manuscript's Dataset B2 summary table.</p>
+
+      <div class="grid two figures">
+        <figure class="figure">
+          <img src="assets/th_rate.png" alt="Tumour-to-healthy rate across datasets and models">
+          <figcaption>T-H rate across Dataset B, BC, and B2.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="assets/healthy_precision.png" alt="Healthy class precision across models and datasets">
+          <figcaption>Healthy-class precision across models and datasets.</figcaption>
+        </figure>
+      </div>
+      <div class="grid two figures">
+        <figure class="figure">
+          <img src="assets/validation_test_accuracy.png" alt="Validation and test accuracies across models and datasets">
+          <figcaption>Validation and test accuracies across models and datasets.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="assets/precision_recall.png" alt="Class-wise precision and recall across models and datasets">
+          <figcaption>Class-wise precision and recall maps across datasets.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section narrow">
+      <h2>Datasets</h2>
+      <div class="grid three">
+        <article class="mini-card metric"><span>7,023</span><p>Dataset B: cleaned four-class dataset from public brain MRI sources.</p></article>
+        <article class="mini-card metric"><span>360</span><p>Dataset BC: balanced subset with 90 images per class.</p></article>
+        <article class="mini-card metric"><span>120</span><p>Dataset B2: small balanced subset with 30 images per class.</p></article>
+      </div>
+    </section>
+
+    <section id="citation" class="section narrow">
+      <h2>Citation</h2>
+      <p>Update the venue fields after acceptance or public release.</p>
+      <pre><code>@misc{marghalani2026risk_sensitive_contextual_bandits,
+  title        = {Risk-Sensitive Learning using Contextual Bandits for Medical Image Classification on Small Datasets},
+  author       = {Marghalani, Bashayer and Herrmann, J. Michael},
+  year         = {2026},
+  note         = {Manuscript / paper page. Update venue fields after acceptance.}
+}</code></pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Bashayer Marghalani and J. Michael Herrmann. Built as a static GitHub Pages paper site.</p>
+  </footer>
+</body>
+</html>
