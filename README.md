@@ -1,22 +1,45 @@
-# Cost-Sensitive Learning using Contextual Bandits for Medical Image Risk-Aware Classification on Small Datasets
+# Hybrid Thompson-UCB for Risk-Aware Brain Tumour Classification under Limited Data
 
-The webpage presents the paper abstract, method overview, figures, Dataset B, BC, and B2 full table results, figures and citation information.
+This repository hosts the GitHub Pages paper website and supporting research assets for the paper:
 
-## Overview
+**Hybrid Thompson-UCB for Risk-Aware Brain Tumour Classification under Limited Data**
 
-This work studies risk-aware brain tumour classification under limited-data conditions. Instead of optimising accuracy alone, the paper frames four-class brain MRI classification as a single-step contextual bandit problem and uses a cost-sensitive reward design to penalise clinically dangerous tumour-to-healthy errors.
-
-The website highlights:
-
-- the main research idea;
-- the abstract;
-- the contextual-bandits learning pipeline;
-- key figures from the manuscript;
-- The abb three Datasets performance results;
-- a draft BibTeX citation.
+The project studies risk-aware brain tumour classification under limited-data conditions. It frames four-class brain MRI classification as a contextual-bandit decision problem and uses cost-sensitive rewards to reduce high-risk tumour-to-healthy classification errors.
 
 ---
+
+## Website contents
+
+The paper page presents:
+
+- the paper title and abstract;
+- the Hybrid Thompson-UCB / Thompson-UCB policy framing;
+- the risk-aware contextual-bandit learning idea;
+- the safety-aware classification pipeline;
+- feature-space and performance visualisations;
+- tumour-to-healthy error analysis;
+- healthy-class precision analysis;
+- validation and test accuracy results;
+- class-wise precision and recall results;
+- citation metadata.
+
+---
+
+## Ablation study
+
+This repository also includes the ablation study file:
+
+```text
+Ablation_study_of_shared_preprocessing_vs_backbone_specific_preprocessing.pdf
+```
+
+The ablation study compares shared preprocessing and backbone-specific preprocessing. It is included as supporting analysis for understanding how preprocessing choices affect the feature extraction and classification workflow used in the paper.
+
+---
+
 ## Repository structure
+
+The current `assets` branch keeps the website files and supporting paper assets at the repository root:
 
 ```text
 Cost-Sensitive-Contextual-Bandits-Classifier/
@@ -25,7 +48,8 @@ Cost-Sensitive-Contextual-Bandits-Classifier/
 ├── CITATION.cff
 ├── README.md
 ├── .nojekyll
-├── Cost_Sensitive_Learning_using_Contextual_Bandits_for_Medical_Image_Classification_on_Small_Datasets.pdf
+├── Hybrid Thompson-UCB for Risk-Aware Brain Tumour Classification under Limited Data.pdf
+├── Ablation_study_of_shared_preprocessing_vs_backbone_specific_preprocessing.pdf
 ├── feature_space.png
 ├── H prec.png
 ├── T-H rate accross datasets and models_new.png
@@ -33,19 +57,13 @@ Cost-Sensitive-Contextual-Bandits-Classifier/
 └── Precision and recall for all policies across all datasets B BC B2.png
 ```
 
+Additional result tables and pipeline assets may also be stored at the repository root if they were uploaded separately.
+
+---
 
 ## Citation
 
-Please update the citation after the paper is accepted or publicly released.
-
-```bibtex
-@misc{marghalani2026cost_sensitive_contextual_bandits,
-  title        = {Risk-Sensitive Learning using Contextual Bandits for Medical Image Classification on Small Datasets},
-  author       = {Marghalani, Bashayer and Herrmann, J. Michael},
-  year         = {2026},
-  note         = {Manuscript / paper page. Update venue fields after acceptance.}
-}
-```
+to be updated
 
 ---
 
